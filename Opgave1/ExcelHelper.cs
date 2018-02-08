@@ -11,17 +11,13 @@ namespace Opgave1
     {
         public static void CreateExcel(List<Opgave> opgaveList)
         {
-            // Check xlApp
             Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
 
-            //Create workbook
             Microsoft.Office.Interop.Excel.Workbook xlWorkBook;
 
             Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet;
 
             object misValue = System.Reflection.Missing.Value;
-
-
 
             xlWorkBook = xlApp.Workbooks.Add(misValue);
 
@@ -53,28 +49,19 @@ namespace Opgave1
                 xlWorkSheet.Cells[i + 2, 8] = opgaveList[i].KundeObject?.KundeNr ?? null;
             }
                 
-            
-
-            
-
             xlWorkBook.SaveAs("C:\\excel\\csharp-Excel.xls", Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
 
             xlWorkBook.Close(true, misValue, misValue);
 
             xlApp.Quit();
-
-
-
+            
             Marshal.ReleaseComObject(xlWorkSheet);
 
             Marshal.ReleaseComObject(xlWorkBook);
 
             Marshal.ReleaseComObject(xlApp);
 
-
-
             Console.WriteLine("Excel file created , you can find the file C:\\excel\\csharp-Excel.xls");
-
-        }
+         }
     }
 }
